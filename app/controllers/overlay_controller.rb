@@ -1,4 +1,6 @@
 class OverlayController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+  after_filter :allow_iframe_requests
 
   def index
     overlay
@@ -11,5 +13,9 @@ class OverlayController < ApplicationController
     overlay.opacity = (Magick::TransparentOpacity-Magick::OpaqueOpacity) * 0.50
     source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
     source.write("app/assets/images/profile_overlay.png")
+  end
+
+  def allow_iframe_requests
+    response.headers.delete 'X-Frame-Options'
   end
 end
