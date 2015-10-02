@@ -19,3 +19,9 @@
 
 /vendor
 /log
+
+# SSL Certificate files
+/server.crt
+/server.csr
+/server.key
+/server.orig.key
