@@ -1,5 +1,6 @@
 class OverlayController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  before_filter :allow_iframe_requests
 
   def index
     overlay
@@ -13,4 +14,10 @@ class OverlayController < ApplicationController
     source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
     source.write("app/assets/images/profile_overlay.png")
   end
+
+  private
+
+    def allow_iframe_requests
+      response.headers.delete('X-Frame-Options')
+    end
 end
