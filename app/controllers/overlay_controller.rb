@@ -1,3 +1,5 @@
+require 'rmagick'
+
 class OverlayController < ApplicationController
   skip_before_filter :verify_authenticity_token
   after_filter :allow_iframe_requests
