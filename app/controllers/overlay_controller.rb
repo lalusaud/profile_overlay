@@ -22,7 +22,8 @@ class OverlayController < ApplicationController
     overlay = Magick::Image.read("app/assets/images/overlay_flag.png").first
     overlay.opacity = (Magick::TransparentOpacity-Magick::OpaqueOpacity) * 0.75
     source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
-    source.write("app/assets/images/profile_overlay.png")
+    filename = "#{current_user[:id]}.png"
+    source.write("app/assets/images/#{filename}")
   end
 
   def allow_iframe_requests
