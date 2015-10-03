@@ -25,3 +25,4 @@
 /server.csr
 /server.key
 /server.orig.key
+/config/facebook.yml
