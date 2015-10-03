@@ -1,4 +1,11 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, FACEBOOK_CONFIG['app_id'], FACEBOOK_CONFIG['secret'],
-                      :image_size => {width: 200, height: 200}
+  if Rails.env.development? or Rails.env.test?
+    app_id = FACEBOOK_CONFIG['app_id']
+    secret = FACEBOOK_CONFIG['secret']
+  else
+    app_id = ENV['app_id']
+    secret = ENV['secret']
+  end
+
+  provider :facebook, app_id, secret, :image_size => {width: 200, height: 200}
 end
