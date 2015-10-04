@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-3 col-xs-3">
       <!-- <p><%#= image_tag image, class: 'img-responsive' %></p> -->
       <p><%= image_tag "#{current_user[:id]}_#{image}", class: 'img-responsive' %></p>
-      <p><%= link_to 'Publish', publish_path(image: image.split('.').first), class: 'btn btn-primary' %></p>
+      <p><%= link_to 'Publish', publish_path(image: image.split('.').first), class: 'btn btn-primary btn-block' %></p>
     </div>
   <% end %>
 </div>

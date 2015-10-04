@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="wrapper">
 
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>">
@@ -36,10 +36,13 @@
     <%= yield %>
 
     <footer>
-      <p>
-        Copyright &copy; 2015. Developed with
+      <p class="col-md-12 col-sm-12 col-xs-12">
+        Copyright &copy; 2015. All Rights Reserved. Developed with
         <span class="glyphicon glyphicon-heart"></span>
-        by Lal Bahadur Saud. All Rights Reserved.</p>
+        by Lal Bahadur Saud. Source code shared @
+        <a href="https://github.com/lalusaud/profile_overlay" target="_blank">github</a>.
+        Overlay images credit by various artists.
+      </p>
     </footer>
   </div>
 </body>
