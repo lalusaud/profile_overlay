@@ -14,8 +14,33 @@
         <%= value %>
       </div>
     <% end %>
-      
+
+    <header>
+      <div class="row">
+        <div class="col-md-8 col-sm-8 col-xs-8">
+          <h1>Profile Image Overlay</h1>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <% if current_user %>
+            <span class="pull-right">
+              <h1>
+              <small><%= current_user[:name] %></small>
+              <%= image_tag current_user[:image_url], width: 50 %>
+              </h1>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </header><br/>
+
     <%= yield %>
+
+    <footer>
+      <p>
+        Copyright &copy; 2015. Developed with
+        <span class="glyphicon glyphicon-heart"></span>
+        by Lal Bahadur Saud. All Rights Reserved.</p>
+    </footer>
   </div>
 </body>
 </html>

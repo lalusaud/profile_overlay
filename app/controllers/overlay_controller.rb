@@ -7,7 +7,7 @@ class OverlayController < ApplicationController
   end
 
   def profile
-    @overlay_images = %w(overlay_dashain.png overlay_flag.png overlay_dharahara.png overlay_merodesh.png)
+    @overlay_images = %w(dashain.png npflag.png dharahara.png merodesh.png)
     source = Overlay.get_source_image current_user
     @overlay_images.each do |overlay|
       Overlay.create_image source, overlay, current_user
@@ -18,8 +18,8 @@ class OverlayController < ApplicationController
     overlay_image = params.fetch(:image)
     file_path = "app/assets/images/#{current_user[:id]}_#{overlay_image}.png"
     facebook = Koala::Facebook::API.new(session[:access_token])
-    result = facebook.put_picture(file_path, {:message => "My upload message"}, "me")
-    url = "http://www.facebook.com/photo.php?fbid=#{result['id']}&makeprofile=1"
+    img = facebook.put_picture(file_path, {}, "me")
+    url = "https://www.facebook.com/photo.php?fbid=#{img['id']}&makeprofile=1"
 
     redirect_to url
   end
