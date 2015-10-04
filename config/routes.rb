@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :overlay
 
   get '/profile', to: "overlay#profile"
+  get '/publish', to: 'overlay#publish'
   get 'auth/facebook', as: 'auth_provider'
   get 'auth/:provider/callback', to: 'sessions#create'
 

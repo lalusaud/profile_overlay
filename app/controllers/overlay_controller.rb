@@ -1,5 +1,3 @@
-require 'rmagick'
-
 class OverlayController < ApplicationController
   skip_before_filter :verify_authenticity_token
   after_filter :allow_iframe_requests
@@ -9,23 +7,21 @@ class OverlayController < ApplicationController
   end
 
   def profile
-    overlay
+    @overlay_images = %w(overlay_dashain.png overlay_flag.png overlay_dharahara.png overlay_merodesh.png)
+    source = Overlay.get_source_image current_user
+    @overlay_images.each do |overlay|
+      Overlay.create_image source, overlay, current_user
+    end
   end
 
-  def overlay
-    # source = Magick::Image.read("app/assets/images/minions.png").first
-    source = Magick::ImageList.new
-    image_url = URI.parse(current_user[:image_url])
-    image_url.scheme = 'https'
-    urlimage = open(image_url)
-    source.from_blob(urlimage.read).first
+  def publish
+    overlay_image = params.fetch(:image)
+    file_path = "app/assets/images/#{current_user[:id]}_#{overlay_image}.png"
+    facebook = Koala::Facebook::API.new(session[:access_token])
+    result = facebook.put_picture(file_path, {:message => "My upload message"}, "me")
+    url = "http://www.facebook.com/photo.php?fbid=#{result['id']}&makeprofile=1"
 
-    source = source.resize_to_fill(200, 200)
-    overlay = Magick::Image.read("app/assets/images/overlay_flag.png").first
-    overlay.opacity = (Magick::TransparentOpacity-Magick::OpaqueOpacity) * 0.75
-    source.composite!(overlay, 0, 0, Magick::OverCompositeOp)
-    filename = "#{current_user[:id]}.png"
-    source.write("app/assets/images/#{filename}")
+    redirect_to url
   end
 
   def allow_iframe_requests

@@ -25,6 +25,7 @@ gem "rmagick"
 gem 'carrierwave'
 gem 'rails_12factor', group: :production
 gem 'omniauth-facebook' # Facebook authentication
+gem "koala", "~> 2.2" # Facebook API
 
 group :development, :test do
   gem 'byebug'
