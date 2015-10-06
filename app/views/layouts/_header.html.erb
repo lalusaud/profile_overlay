@@ -3,16 +3,18 @@
     <h1>Profile Image Overlay</h1>
   </div>
   <div class="col-md-4 col-sm-4 col-xs-4">
-    <% if current_user %>
-      <span class="pull-right">
-        <h1>
+    <span class="pull-right">
+      <h1>
+        <% if current_user %>
         <small>
           <%= current_user[:name] %><br/>
           <p><%= link_to 'Logout', logout_path, method: :delete %></p>
         </small>
         <%= image_tag current_user[:image_url], width: 50 %>
-        </h1>
-      </span>
-    <% end %>
+        <% else %>
+          <small>Hello Guest</small>
+        <% end %>
+      </h1>
+    </span>
   </div>
 </div>

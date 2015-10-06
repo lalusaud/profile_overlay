@@ -11,7 +11,7 @@ class OverlayController < ApplicationController
 
   def profile
     source = Overlay.get_source_image current_user
-    @overlay_images = %w(dashain.png npflag.png dharahara.png merodesh.png)
+    @overlay_images = Overlay.images
     @overlay_images.each do |overlay|
       Overlay.create_image source, overlay, current_user
     end
@@ -36,6 +36,6 @@ class OverlayController < ApplicationController
   private
     def fetch_image
       image = params.fetch(:image)
-      @file_path = "app/assets/images/#{current_user.uid}_#{image}.png"
+      @file_path = "app/assets/images/users/#{current_user.uid}_#{image}.png"
     end
 end
