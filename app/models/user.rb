@@ -10,4 +10,11 @@ class User < ActiveRecord::Base
     user
   end
 
+  def delete_images
+    images = Overlay.images
+    images.each do |image|
+      file_path = "app/assets/images/users/#{uid}_#{image}"
+      File.delete file_path if File.exists? file_path
+    end
+  end
 end

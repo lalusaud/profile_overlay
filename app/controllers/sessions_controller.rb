@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   def destroy
     if current_user
-      # current_user.delete_images
+      current_user.delete_images
       session.delete(:user_id)
       flash[:success] = 'Successfully logged out!'
     end
