@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/profile', to: "overlay#profile"
   get '/publish', to: 'overlay#publish'
+  get '/download', to: 'overlay#download'
   get 'auth/facebook', as: 'auth_provider'
   get 'auth/:provider/callback', to: 'sessions#create'
 

@@ -1,6 +1,6 @@
 class Overlay
   def self.create_image source, overlay_image, user
-    source = source.resize_to_fill(400, 400)
+    source = source.resize_to_fill(500, 500)
 
     overlay = Magick::Image.read("app/assets/images/#{overlay_image}").first
     intermediate = source.composite(overlay, Magick::CenterGravity, Magick::SrcOverCompositeOp)

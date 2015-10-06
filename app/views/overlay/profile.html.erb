@@ -2,8 +2,16 @@
   <% @overlay_images.each do |image|  %>
     <div class="col-md-3 col-sm-3 col-xs-3">
       <!-- <p><%#= image_tag image, class: 'img-responsive' %></p> -->
-      <p><%= image_tag "#{current_user[:id]}_#{image}", class: 'img-responsive' %></p>
-      <p><%= link_to 'Publish', publish_path(image: image.split('.').first), class: 'btn btn-primary btn-block' %></p>
+      <p><%= image_tag "#{current_user[:id]}_#{image}",
+              class: 'img-responsive', data: {action: 'zoom'} %></p>
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <%= link_to 'Publish', publish_path(image: image.split('.').first), class: 'btn btn-primary btn-block' %>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <%= link_to 'Download', download_path(image: image.split('.').first), class: "btn btn-success btn-block" %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
