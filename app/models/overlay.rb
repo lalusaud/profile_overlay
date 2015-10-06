@@ -27,8 +27,7 @@ class Overlay
             region:'us-east-1',
             credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'],
                                           ENV['AWS_SECRET_ACCESS_KEY']))
-    raise s3.inspect
-    bucket = s3.bucket(ENV['S3_BUCKET'])
+    bucket = s3.bucket(ENV['S3_BUCKET_NAME'])
     bucket.object(file).put({body: source.to_blob, acl: 'public-read'})
   end
 end
