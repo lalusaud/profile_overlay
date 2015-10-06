@@ -2,7 +2,7 @@
 <div class="row">
   <% @overlay_images.each do |image|  %>
     <div class="col-md-3 col-sm-3 col-xs-3">
-      <p><%= image_tag "users/#{current_user.uid}_#{image}",
+      <p><%= image_tag "https://s3.amazonaws.com/profile-overlay-assets/#{current_user.uid}_#{image}",
               class: 'img-responsive', data: {action: 'zoom'} %></p>
       <div class="row">
         <div class="col-md-6 col-sm-6">

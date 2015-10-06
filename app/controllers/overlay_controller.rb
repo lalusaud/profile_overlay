@@ -40,7 +40,6 @@ class OverlayController < ApplicationController
     end
 
     def require_login
-      flash[:warning] = 'You need to login first!'
       redirect_to root_path unless current_user
     end
 end
