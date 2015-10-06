@@ -3,9 +3,9 @@ class Overlay
     source = source.resize_to_fill(400, 400)
 
     overlay = Magick::Image.read("app/assets/images/#{overlay_image}").first
-    overlay.opacity = (Magick::TransparentOpacity-Magick::OpaqueOpacity) * 0.35
-
-    source.composite!(overlay, Magick::CenterGravity, Magick::OverlayCompositeOp)
+    intermediate = source.composite(overlay, Magick::CenterGravity, Magick::SrcOverCompositeOp)
+    intermediate.opacity = (Magick::TransparentOpacity-Magick::OpaqueOpacity) * 0.45
+    source.composite!(intermediate, Magick::CenterGravity, Magick::SrcOverCompositeOp)
 
     filename = "#{user[:id]}_#{overlay_image}"
     source.write("app/assets/images/#{filename}")
