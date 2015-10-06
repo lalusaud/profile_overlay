@@ -18,7 +18,7 @@ class OverlayController < ApplicationController
   end
 
   def publish
-    facebook = Koala::Facebook::API.new(session[:access_token])
+    facebook = Koala::Facebook::API.new(current_user.token)
     img = facebook.put_picture(@file_path, {}, "me")
     url = "https://www.facebook.com/photo.php?fbid=#{img['id']}&makeprofile=1"
 
