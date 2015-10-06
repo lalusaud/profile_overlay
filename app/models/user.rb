@@ -12,9 +12,11 @@ class User < ActiveRecord::Base
 
   def delete_images
     images = Overlay.images
-    images.each do |image|
-      file_path = "app/assets/images/users/#{uid}_#{image}"
-      File.delete file_path if File.exists? file_path
-    end
+    s3 = Aws::S3::Resource.new(
+            region:'us-east-1',
+            credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'],
+                                          ENV['AWS_SECRET_ACCESS_KEY']))
+    bucket = s3.bucket(ENV['S3_BUCKET'])
+    bucket.objects.delete(images)
   end
 end
