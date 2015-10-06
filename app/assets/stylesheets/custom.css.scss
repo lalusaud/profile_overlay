@@ -10,6 +10,19 @@ html, body {
     position: relative;
 }
 
+h1 {
+  small {
+    float: left;
+    text-align: right;
+    padding: 6px 10px;
+    p {
+      font-size: 14px;
+      font-weight: normal;
+      padding: 4px 0;
+    }
+  }
+}
+
 footer {
     bottom: 0;
     height: 50px;

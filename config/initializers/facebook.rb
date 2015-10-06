@@ -1,3 +1,3 @@
 if Rails.env.development? or Rails.env.test?
-  FACEBOOK_CONFIG = YAML.load_file("#{::Rails.root}/config/facebook.yml")[::Rails.env]
+  ENV = YAML.load_file("#{::Rails.root}/config/facebook.yml")[::Rails.env]
 end

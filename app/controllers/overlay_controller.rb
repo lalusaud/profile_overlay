@@ -4,7 +4,9 @@ class OverlayController < ApplicationController
   before_filter :fetch_image, only: [:publish, :download]
 
   def index
-    redirect_to auth_provider_url
+    if current_user
+      redirect_to auth_provider_url
+    end
   end
 
   def profile
@@ -34,6 +36,6 @@ class OverlayController < ApplicationController
   private
     def fetch_image
       image = params.fetch(:image)
-      @file_path = "app/assets/images/#{current_user[:id]}_#{image}.png"
+      @file_path = "app/assets/images/#{current_user.uid}_#{image}.png"
     end
 end

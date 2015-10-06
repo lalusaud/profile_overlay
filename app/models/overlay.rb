@@ -7,7 +7,7 @@ class Overlay
     intermediate.opacity = (Magick::TransparentOpacity-Magick::OpaqueOpacity) * 0.45
     source.composite!(intermediate, Magick::CenterGravity, Magick::SrcOverCompositeOp)
 
-    filename = "#{user[:id]}_#{overlay_image}"
+    filename = "#{user.uid}_#{overlay_image}"
     source.write("app/assets/images/#{filename}")
   end
 
