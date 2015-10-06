@@ -1,6 +1,6 @@
 class OverlayController < ApplicationController
-  skip_before_filter :verify_authenticity_token
   after_filter :allow_iframe_requests
+  before_filter :require_login, except: [:index]
   before_filter :fetch_image, only: [:publish, :download]
 
   def index
@@ -35,7 +35,12 @@ class OverlayController < ApplicationController
 
   private
     def fetch_image
-      image = params.fetch(:image)
+      image = params.fetch(:image) if params[:image]
       @file_path = "app/assets/images/users/#{current_user.uid}_#{image}.png"
+    end
+
+    def require_login
+      flash[:warning] = 'You need to login first!'
+      redirect_to root_path unless current_user
     end
 end
