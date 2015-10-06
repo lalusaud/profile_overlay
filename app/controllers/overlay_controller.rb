@@ -36,7 +36,8 @@ class OverlayController < ApplicationController
   private
     def fetch_image
       image = params.fetch(:image) if params[:image]
-      @file_path = "app/assets/images/users/#{current_user.uid}_#{image}.png"
+      url = 'https://s3.amazonaws.com/profile-overlay-assets'
+      @file_path = "#{url}/#{current_user.uid}_#{image}.png"
     end
 
     def require_login
