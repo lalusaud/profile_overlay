@@ -1,3 +1,4 @@
+require 'open-uri'
 class OverlayController < ApplicationController
   after_filter :allow_iframe_requests
   before_filter :require_login, except: [:index]
@@ -26,7 +27,8 @@ class OverlayController < ApplicationController
   end
 
   def download
-    send_file @file_path, :type => 'image/jpeg', :disposition => 'attachment'
+    data = open(@file_path)
+    send_file data, filename: "profile_pic.jpg", type: "image/jpeg", disposition: 'attachment'
   end
 
   def allow_iframe_requests
