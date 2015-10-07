@@ -12,11 +12,12 @@ class User < ActiveRecord::Base
 
   def delete_images
     images = Overlay.images
+    images.map! { |image| "#{uid}_#{image}" }
     s3 = Aws::S3::Resource.new(
             region:'us-east-1',
             credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'],
                                           ENV['AWS_SECRET_ACCESS_KEY']))
-    bucket = s3.bucket(ENV['S3_BUCKET'])
+    bucket = s3.bucket(ENV['S3_BUCKET_NAME'])
     bucket.objects.delete(images)
   end
 end
