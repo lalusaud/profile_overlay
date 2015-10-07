@@ -10,7 +10,7 @@
           <%= current_user[:name] %><br/>
           <p><%= link_to 'Logout', logout_path, method: :delete %></p>
         </small>
-        <%= image_tag current_user[:image_url], width: 50 %>
+        <%= image_tag current_user[:image_url], width: 50, align: 'right' %>
         <% else %>
           <small>Hello Guest</small>
         <% end %>
