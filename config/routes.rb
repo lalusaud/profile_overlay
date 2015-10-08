@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :overlay
 
-  get '/profile', to: "overlay#profile"
+  get '/profile', to: 'overlay#profile'
   get '/publish', to: 'overlay#publish'
   get '/download', to: 'overlay#download'
+  get '/privacy', to: 'overlay#privacy'
   get 'auth/facebook', as: 'auth_provider'
   get 'auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'overlay#index'
-  post '/' => 'overlay#index'
+  # post '/' => 'overlay#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

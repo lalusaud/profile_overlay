@@ -1,7 +1,7 @@
 require 'open-uri'
 class OverlayController < ApplicationController
   after_filter :allow_iframe_requests
-  before_filter :require_login, except: [:index]
+  before_filter :require_login, except: [:index, :privacy]
   before_filter :fetch_image, only: [:publish, :download]
 
   def index
@@ -24,6 +24,9 @@ class OverlayController < ApplicationController
     url = "https://www.facebook.com/photo.php?fbid=#{img['id']}&makeprofile=1"
 
     redirect_to url
+  end
+
+  def privacy
   end
 
   def download
