@@ -6,3 +6,7 @@ before_script:
   - psql -c 'create database po_test;' -U postgres
 
 script: "bundle exec rspec"
+
+addons:
+    code_climate:
+        repo_token: 30954ee3a18b9d5cbad5ced92df54dfa11a65f6d1dc0332fb88d2c2742ce651e

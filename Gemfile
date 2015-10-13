@@ -36,3 +36,5 @@ group :development, :test do
   gem 'capybara'
   gem 'thin'
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
