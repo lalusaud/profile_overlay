@@ -1,6 +1,23 @@
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
+require 'omniauth'
+
+OmniAuth.config.test_mode = true
+omniauth_hash = {
+  'provider' => 'facebook',
+  'uid' => '12345',
+  'info' => {
+      'name' => 'John Doe',
+      'email' => 'john@exmaple.com',
+      'image' => 'http://example.com/image1.jpg'
+  },
+  'credentials' => {
+    'token' => 'A123bcDEf432'
+  }
+}
+OmniAuth.config.add_mock(:facebook, omniauth_hash)
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
