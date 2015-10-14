@@ -6,7 +6,7 @@ class OverlayController < ApplicationController
 
   def index
     if current_user
-      redirect_to auth_provider_url
+      redirect_to profile_path
     end
   end
 
