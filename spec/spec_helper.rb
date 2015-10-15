@@ -10,7 +10,7 @@ omniauth_hash = {
   'info' => {
       'name' => 'John Doe',
       'email' => 'john@exmaple.com',
-      'image' => 'http://example.com/image1.jpg'
+      'image' => 'http://placehold.it/350x150'
   },
   'credentials' => {
     'token' => 'A123bcDEf432'
@@ -92,4 +92,4 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f} 
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}

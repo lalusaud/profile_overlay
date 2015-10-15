@@ -10,7 +10,7 @@ RSpec.describe OverlayController, type: :controller do
     it 'does not redirects non logged-in users' do
       sign_in
       get :index
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status :success
     end
 
     it 'redirects logged-in users to profile page' do
@@ -31,8 +31,7 @@ RSpec.describe OverlayController, type: :controller do
     it 'creates overlay images' do
       user = User.from_omniauth(request.env['omniauth.auth'])
       sign_in user
-      expect(Overlay.images.count).to eq(4)
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status :success
     end
   end
 
