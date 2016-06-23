@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-4 col-sm-4 col-xs-4">
     <span class="pull-right">
-      <h3>
+      <h1>
         <% if current_user %>
           <small>
             <%= current_user[:name] %><br/>
@@ -14,7 +14,7 @@
           </small>
           <%= image_tag current_user[:image_url], width: 50, align: 'right' %>
         <% end %>
-      </h3>
+      </h1>
     </span>
   </div>
 </div>
